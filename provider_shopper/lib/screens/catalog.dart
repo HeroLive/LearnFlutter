@@ -47,9 +47,7 @@ class _MyListItem extends StatelessWidget {
           children: [
             AspectRatio(
               aspectRatio: 1,
-              child: Container(
-                color: item.color,
-              ),
+              child: Image.network(item.url),
             ),
             const SizedBox(width: 24),
             Expanded(

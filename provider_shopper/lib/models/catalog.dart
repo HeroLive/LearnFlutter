@@ -12,6 +12,7 @@ import 'package:flutter/material.dart';
 /// For simplicity, the catalog is expected to be immutable (no products are
 /// expected to be added, removed or changed during the execution of the app).
 class CatalogModel {
+  final url = 'https://picsum.photos/250?image=';
   static List<String> itemNames = [
     'Code Smell',
     'Control Flow',
@@ -33,17 +34,18 @@ class CatalogModel {
   /// Get item by [id].
   ///
   /// In this sample, the catalog is infinite, looping over [itemNames].
-  Item getById(int id) => Item(id, itemNames[id % itemNames.length]);
+  Item getById(int id) => Item(id, itemNames[id % itemNames.length], '$url$id');
 }
 
 @immutable
 class Item {
   final int id;
   final String name;
+  final String url;
   final Color color;
   final int price = 42;
 
-  Item(this.id, this.name)
+  Item(this.id, this.name, this.url)
       // To make the sample app look nicer, each item is given one of the
       // Material Design primary colors.
       : color = Colors.primaries[id % Colors.primaries.length];
