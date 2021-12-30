@@ -3,13 +3,18 @@
 // found in the LICENSE file.
 
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:provider_shopper/models/cart.dart';
 
 import 'screens/cart.dart';
 import 'screens/catalog.dart';
 import 'screens/login.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MultiProvider(
+    providers: [ChangeNotifierProvider(create: (_) => CartModel())],
+    child: const MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {

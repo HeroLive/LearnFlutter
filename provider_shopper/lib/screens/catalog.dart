@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider_shopper/models/cart.dart';
 import 'package:provider_shopper/models/catalog.dart';
+import 'package:provider/provider.dart';
 
 class CatalogPage extends StatefulWidget {
   const CatalogPage({Key? key}) : super(key: key);
@@ -54,10 +56,23 @@ class _MyListItem extends StatelessWidget {
               child: Text(item.name),
             ),
             const SizedBox(width: 24),
-            IconButton(onPressed: () {}, icon: Icon(Icons.add))
+            _AddButton(item: item)
           ],
         ),
       ),
     );
+  }
+}
+
+class _AddButton extends StatelessWidget {
+  final Item item;
+  const _AddButton({Key? key, required this.item}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+        child: IconButton(
+            onPressed: () => context.read<CartModel>().increment(),
+            icon: Icon(Icons.add)));
   }
 }
