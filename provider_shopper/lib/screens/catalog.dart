@@ -72,7 +72,10 @@ class _AddButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
         child: IconButton(
-            onPressed: () => context.read<CartModel>().increment(),
-            icon: Icon(Icons.add)));
+            onPressed: () {
+              context.read<CartModel>().increment();
+              context.read<CartModel>().add(item.id);
+            },
+            icon: Icon(Icons.add_circle_rounded)));
   }
 }
